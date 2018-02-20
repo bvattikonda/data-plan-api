@@ -406,6 +406,8 @@ Currently defined error cases are:
     with the Retry-After header indicating when a new request can be attempted.
 *   The DPA returns a 500 INTERNAL SERVER ERROR error code for all other
     unspecified errors.
+*   The DPA returns a 429 Too Many Requests error code when the DPA (or a
+    backend) is overloaded.
 
 In all error cases, the DPA MUST include a JSON object with more information
 about the error. The error response body MUST use the following structure:
@@ -445,6 +447,8 @@ The following `cause` values are currently defined:
 1.  SIM_RELOAD_REQUIRED = 11. The phone number provided in the request is in a
     "grace period" where a subscriber can receive incoming calls but cannot use
     mobile data. User has to top up credits or buy data packs to get out of this state.
+1.  TOO_MANY_REQUESTS = 12. The DPA (or a backend) is overloaded with too many
+    requests.
 
 Otherwise, the DPA returns a 200 OK. We note that these `cause` values are used
 for all responses.
